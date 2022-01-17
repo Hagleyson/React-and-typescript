@@ -7,12 +7,15 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const handleTodo = (text: string) => {
-    setTodos((prevState) => [new Todo(text), ...prevState]);
+    setTodos((prevTodo) => [new Todo(text), ...prevTodo]);
+  };
+  const removeTodoHandler = (todoId: string) => {
+    setTodos((prevTodo) => prevTodo.filter((todo) => todo.id !== todoId));
   };
   return (
     <div>
       <NewTodo onAddTodo={handleTodo} />
-      <Todos items={todos}>
+      <Todos items={todos} onRemoveTodo={removeTodoHandler}>
         <h1>hagleyson</h1>
       </Todos>
     </div>
